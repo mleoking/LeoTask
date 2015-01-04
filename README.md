@@ -9,7 +9,10 @@ To run the example application of Roll Dice, execute the following commnad
 
     java -jar leotask.jar -load=rolldice.xml
 
-in the Demo folder. If you are using windows system, you can also execute "rolldice.bat".
+in the Demo folder. If you are using windows system, you can also execute "rolldice.bat". 
+
+Note: the demo requires Gnuplot 4.6.5 installed and its gnuplot command directory included in the
+system’s PATH environment variable.
 
 
 ## Features:
