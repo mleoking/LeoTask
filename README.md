@@ -14,6 +14,7 @@ in the Demo folder. If you are using windows system, you can also execute "rolld
 Note: the demo requires [Gnuplot 4.6.5](http://sourceforge.net/projects/gnuplot/files/gnuplot/4.6.5/) installed and its gnuplot command directory included in the
 system’s PATH environment variable.
 
+The demo will generate 6 files: 1 data file (.csv), 3 gnuplot script files (.plt), and 3 figures (.pdf).
 
 ## Features:
 
