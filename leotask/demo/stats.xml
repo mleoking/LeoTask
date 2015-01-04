@@ -1,0 +1,17 @@
+<Statistics>
+    <info val="stats"/><points val="p1;p2"/><keyVar val="id"/><valVar val="i1"/><bUniqueKeys val="false"/>
+    <parVars val="d1;s1"/><maxListOutSize val="100"/>
+    <members>
+        <i><info val="p1@stat0 the stat with all default parameter values from stats"/></i>
+        <i><info val="p1@stat1"/><bUniqueKeys val="true"/></i>
+        <i><info val="p1@stat2"/><valVar val="d1"/><parVars val="i1;d1"/></i>
+        <i><info val="p2@stat3"/><valVar val="s1"/><parVars val="i1;d1"/></i>
+        <i><info val="p2@stat4"/><parVars val="i1;d1"/></i>
+        <i>
+            <info val="p2@stat6=stat4 with empty keyVar, valVar and null parVars"/>
+            <keyVar val=""/><!-- use empty parameters -->
+            <valVar val=""/>
+            <parVars val="$null$"/>
+        </i>
+    </members>
+</Statistics>

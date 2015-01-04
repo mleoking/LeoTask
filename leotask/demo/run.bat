@@ -1,0 +1,1 @@
+java -jar leotask.jar -load=%1

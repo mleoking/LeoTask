@@ -1,0 +1,13 @@
+Networks 0 2
+Network 0
+Links
+    1     5
+    1    6
+    2  10
+EndNetwork
+Network 1
+Links
+    1     8
+    5    11
+    6  20
+EndNetwork

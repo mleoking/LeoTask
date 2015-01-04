@@ -1,0 +1,10 @@
+Network 0 5 4
+DistributionInDegree [5, 0, 0]
+DistributionOutDegree [5, 0, 0]
+DistributionUndirectedDegree [0, 2, 3]
+Links
+1 0 false null 192.168.1.2-192.168.1.1
+2 0 false null 192.168.1.3-192.168.1.1
+2 1 false null 192.168.1.3-192.168.1.2
+4 3 false null 192.168.2.2-192.168.2.1
+EndNetwork

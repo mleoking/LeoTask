@@ -1,0 +1,9 @@
+<Statistic>
+    <info val="Leo Stat 2"/>
+    <keyVar val="id"/>
+    <valVar val="~#$i1$+0.35#"/>
+    <valid><![CDATA[~$i1$<9]]></valid>
+    <bUniqueKeys val="false"/>
+    <parVars val="d1;s1"/>
+    <maxListOutSize val="100"/>
+</Statistic>

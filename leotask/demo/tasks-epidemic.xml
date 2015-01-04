@@ -1,0 +1,21 @@
+<Tasks>
+  <name val="epidemic"/>
+  <usage val="0.9"/>
+  <nRepeats val="50"/>
+  <variables class="org.leores.task.app.Epidemic">
+    <b1 val="0:0.1:1"/>
+    <b2 val="0.2"/>
+    <g val="0.3:0.1:1"/>
+    <i0 val="0.001"/>
+    <model val="SIR"/>
+    <fnets val="net-er-gne-(1000,2000).dat"/>    
+  </variables>
+  <statistics>
+    <members>
+      <i><info val="A.%plt+@afterRept@"/><valVar val="r"/><parVars val="b1"/></i>
+      <i><info val="B.%plt+@afterRept@"/><valVar val="r"/><parVars val="g"/></i>
+      <i><info val="C.%plt+@afterRept@"/><valVar val="r"/><parVars val="b1;g"/></i>
+      <i><info val="D.%pltm-@beforeStep@"/><valVar val="s;i;r"/><parVars val="iRept;t"/></i>
+    </members>
+  </statistics>
+</Tasks>

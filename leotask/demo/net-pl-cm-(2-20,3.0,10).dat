@@ -1,0 +1,18 @@
+Network 0 10 12 null
+InDegree avgK:0.0 avgK2:0.0 [10, 0, 0, 0, 0]
+OutDegree avgK:0.0 avgK2:0.0 [10, 0, 0, 0, 0]
+UndirectedDegree avgK:2.4 avgK2:6.2 [0, 0, 7, 2, 1]
+Links
+8 9 false null null
+4 3 false null null
+2 7 false null null
+5 4 false null null
+6 8 false null null
+6 9 false null null
+2 9 false null null
+1 5 false null null
+0 8 false null null
+0 1 false null null
+3 7 false null null
+7 9 false null null
+EndNetwork
