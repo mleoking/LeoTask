@@ -11,7 +11,7 @@ To run the example application of Roll Dice, execute the following commnad
 
 in the Demo folder. If you are using windows system, you can also execute "rolldice.bat". 
 
-Note: the demo requires Gnuplot 4.6.5 installed and its gnuplot command directory included in the
+Note: the demo requires [Gnuplot 4.6.5](http://sourceforge.net/projects/gnuplot/files/gnuplot/4.6.5/) installed and its gnuplot command directory included in the
 system’s PATH environment variable.
 
 
