@@ -1,7 +1,7 @@
 LeoTask
 =======
 
-LeoTask is a fast, flexible and reliable framework for computational research. Please refer to [the introduction](https://github.com/mleoking/leotask/blob/master/leotask/introduction.pdf) for building an example application using the framework.
+LeoTask is a fast, flexible and reliable framework for computational research. Please refer to [the introduction](https://github.com/mleoking/leotask/blob/master/leotask/introduction.pdf?raw=true) for building an example application using the framework.
 
 ## Features:
 
