@@ -4,7 +4,6 @@ LeoTask
 LeoTask is a fast, flexible and reliable framework for computational research. 
 
 ## Demo:
-Two example applications using the framework are included in the package of org.leores.task.app.
 To run the example application of Roll Dice, execute the following commnad
 
     java -jar leotask.jar -load=rolldice.xml
