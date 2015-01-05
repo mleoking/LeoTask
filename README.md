@@ -53,8 +53,12 @@ LeoTask is a fast, flexible and reliable framework for computational research.
     				extra = "unset grid;";
     			}
     		};
+    		plot1.add(dts1);
+		dts1.get(0).info = "Sum";
+		dts1.get(1).info = "Sum / No. of dices";
+		jg.execute(plot1, jg.plot3d);
 
-           ...
+                ...
 	    }
     }
 
@@ -76,7 +80,6 @@ LeoTask is a fast, flexible and reliable framework for computational research.
       </statistics>
     </Tasks>
 
-## Demo:
 To run the example application of Roll Dice, execute the following commnad
 
     java -jar leotask.jar -load=rolldice.xml
