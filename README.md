@@ -22,6 +22,32 @@ system’s PATH environment variable.
 * Dynamic & cloneable networks structures
 * Integration with Gnuplot
 
+## Example Application:
+
+    public class RollDice extends Task {
+    	private static final long serialVersionUID = -4612453806484156399L;
+    	public Integer nSide; //Number of dice sides
+    	public Integer nDice; //Number of dices to roll
+    	public Integer sum;
+    
+    	public boolean prepTask() {
+    		boolean rtn = nSide > 0 && nDice > 0;
+    		return rtn;
+    	}
+    
+    	public void beforeRept() {
+    		super.beforeRept();
+    		sum = 0;
+    	}
+
+    	public boolean step() {
+    		boolean rtn = iStep <= nDice;
+    		if (rtn) {
+    			sum += (int) (rand.nextDouble() * nSide);
+    		}
+    		return rtn;
+    	}
+    }
 
 
 
