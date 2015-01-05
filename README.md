@@ -39,34 +39,12 @@ LeoTask is a fast, flexible and reliable framework for computational research.
     		}
     		return rtn;
     	}
-    	
-    	public static void mDrawPDF(Tasks tTasks) {
-    		Task.afterAll(tTasks);
-    		Statistics stats = tTasks.getStatistics();
-    		DataTableSet dts1 = stats.getDataTableSet(null, "Fig1.*");//Get the data results
-
-    		JGnuplot jg = new JGnuplot() {
-    			{
-    				terminal = "pdfcairo enhanced dashed size 5,3";//set to output pdf
-    				output = "$info$.pdf";
-    				beforeStyleVar = "lw=4;";//set the line width to 4
-    				extra = "unset grid;";
-    			}
-    		};
-    		plot1.add(dts1);
-		dts1.get(0).info = "Sum";
-		dts1.get(1).info = "Sum / No. of dices";
-		jg.execute(plot1, jg.plot3d);
-
-                ...
-	    }
     }
 
 ###Configuration (rolldice.xml):
 
     <Tasks>
       <name val="task-rolldice"/><usage val="0.5"/><nRepeats val="5"/><checkInterval val="4"/>
-      <sTaskMethodEnd val="mDrawPDF"/>
       <variables class="org.leores.task.app.RollDice">    
         <nSide val="2;4;6"/>
         <nDice val="2:1:5"/>
