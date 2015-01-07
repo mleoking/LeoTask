@@ -57,14 +57,12 @@ LeoTask is a fast, flexible and reliable framework for computational research. P
         </members>
       </statistics>
     </Tasks>
+    
+Before running the example application, please 1) install [Java](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) and [Gnuplot 4.6.5](http://sourceforge.net/projects/gnuplot/files/gnuplot/4.6.5/), and 2) include the the directories of the command @java@ and @gnuplot@ in system’s PATH environment variable.
 
 To run the example application of Roll Dice, chang the current directory to the "Demo" folder and then execute the following commnad
 
     java -jar leotask.jar -load=rolldice.xml
 
 If you are using a MS windows system, you can also execute "rolldice.bat".
-
-Note: the demo requires [Gnuplot 4.6.5](http://sourceforge.net/projects/gnuplot/files/gnuplot/4.6.5/) installed and its gnuplot command directory included in the
-system’s PATH environment variable.
-
 
