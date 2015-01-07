@@ -11,7 +11,7 @@ LeoTask is a fast, flexible and reliable framework for computational research. P
 * Reliable & automatic interruption recovery
 * ...
 
-## Untilies
+## Utilities
 * Dynamic & cloneable networks structures: a node, a link, a network, and a network set (within which networks can overlap with each other).
 * Integration with Gnuplot
 * Network generation according to common network models
