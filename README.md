@@ -25,10 +25,9 @@ LeoTask is a fast, flexible and reliable framework for computational research. P
 ###Code (RollDice.java):
 ```java
 public class RollDice extends Task {
-    private static final long serialVersionUID = -4612453806484156399L;
     public Integer nSide; //Number of dice sides
     public Integer nDice; //Number of dices to roll
-    public Integer sum;
+    public Integer sum;//Sum of the results of nDice dices
    
     public boolean prepTask() {
         boolean rtn = nSide > 0 && nDice > 0;
