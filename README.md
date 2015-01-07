@@ -9,8 +9,16 @@ LeoTask is a fast, flexible and reliable framework for computational research. P
 * Flexible & configuration-based result aggregation
 * Programming model focusing only on the key logic
 * Reliable & automatic interruption recovery
-* Dynamic & cloneable networks structures
+* ...
+
+## Untilies
+* Dynamic & cloneable networks structures: a node, a link, a network, and a network set (within which networks can overlap with each other).
 * Integration with Gnuplot
+* Network generation according to common network models
+* DelimitedReader: a sophisticated reader that explores CSV (Comma-separated values) files like a database
+* Fast random number generator based on the Mersenne Twister algorithm
+* An integrated CurveFitter from the ImageJ project
+* ...
 
 ## Example Application:
 
