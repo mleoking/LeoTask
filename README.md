@@ -55,7 +55,7 @@ public class RollDice extends Task {
     <name val="task-rolldice"/><usage val="0.5"/><nRepeats val="5"/><checkInterval val="4"/>
     <variables class="org.leores.task.app.RollDice">    
     <nSide val="2;4;6"/>
-    <nDice val="2:1:5"/>
+    <nDice val="2:1:5"/><!--from 2 to 5 with a step of 1, i.e. 2;3;4;5 -->
     </variables>
     <statistics>
         <members>
