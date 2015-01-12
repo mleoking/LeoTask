@@ -1,7 +1,9 @@
 LeoTask
 =======
 
-LeoTask is a fast, flexible and reliable framework for computational research. Please refer to [the introduction](https://github.com/mleoking/leotask/blob/master/leotask/introduction.pdf?raw=true) for building an example application using the framework.
+LeoTask is a parallel task running and results aggregation framework. It is a free and open-source project designed to facilitate running computational intensive tasks [1]. The framework implements the MapReduce model, allocating tasks to multi-cores of a computer and aggregating results according to a XML based configuration file. The framework includes mechanisms to automatically recover applications from interruptions caused by accidents (e.g. Power Cut). Applications using the framework can continue running after an interruption without losing its calculated results.
+
+Please refer to [the introduction](https://github.com/mleoking/leotask/blob/master/leotask/introduction.pdf?raw=true) for building an example application using the framework.
 
 ## Features:
 
@@ -75,4 +77,8 @@ To run the example application of Roll Dice, chang the current directory to the 
     java -jar leotask.jar -load=rolldice.xml
 
 If you are using a MS windows system, you can also execute "rolldice.bat".
+
+References:
+
+[1] Changwang Zhang, Shi Zhou, Benjamin M. Chain (January 2015). "[LeoTask: a fast, flexible and reliable framework for computational research](http://arxiv.org/abs/1501.01678)" (arXiv:1501.01678). Cornell University. [(PDF)](http://arxiv-web3.library.cornell.edu/pdf/1501.01678v1)
 
