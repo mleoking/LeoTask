@@ -78,7 +78,7 @@ To run the example application of Roll Dice, chang the current directory to the 
 
 If you are using a MS windows system, you can also execute "rolldice.bat".
 
-References:
+## References:
 
 [1] Changwang Zhang, Shi Zhou, Benjamin M. Chain (January 2015). "[LeoTask: a fast, flexible and reliable framework for computational research](http://arxiv.org/abs/1501.01678)" (arXiv:1501.01678). Cornell University. [(PDF)](http://arxiv-web3.library.cornell.edu/pdf/1501.01678v1)
 
