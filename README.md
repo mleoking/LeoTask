@@ -19,7 +19,6 @@ Please refer to [the introduction](https://github.com/mleoking/leotask/blob/mast
 * Network generation according to common network models
 * DelimitedReader: a sophisticated reader that explores CSV (Comma-separated values) files like a database
 * Fast random number generator based on the Mersenne Twister algorithm
-* An integrated CurveFitter from the ImageJ project
 * ...
 
 ## Example Application:
