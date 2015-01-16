@@ -60,18 +60,16 @@ public class RollDice extends Task {
     </variables>
     <statistics>
         <members>
-            <i><info val="Fig1%plotm+@afterRept@"/><valVar val="sum;#$sum$/$nDice$#"/>
+            <i><info val="Fig1%pltm+@afterRept@"/><valVar val="sum;#$sum$/$nDice$#"/>
                <parVars val="nSide;nDice"/></i>
-            <i><info val="Fig2%plot+@afterRept@"/><valVar val="sum"/><parVars val="nSide"/></i>
-            <i><info val="Fig3%plot+@afterRept@"/><valVar val="sum"/><parVars val="nDice"/></i> 
+            <i><info val="Fig2%plt+@afterRept@"/><valVar val="sum"/><parVars val="nSide"/></i>
+            <i><info val="Fig3%plt+@afterRept@"/><valVar val="sum"/><parVars val="nDice"/></i> 
         </members>
     </statistics>
 </Tasks>
 ```
 
-Before running the example application, please 1) install [Java](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) and [Gnuplot 4.6.5](http://sourceforge.net/projects/gnuplot/files/gnuplot/4.6.5/), and 2) include the the directories of the command _java_ and _gnuplot_ in system’s _PATH_ environment variable.
-
-Note: to run the example without installing _Gnuplot_, please replace all "plot" in the configuration file with "plt".
+Before running the example application, please install [Java](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) and include the the directories of the command _java_ in system's _PATH_ environment variable.
 
 Chang the current directory to the "Demo" folder and then execute the following commnad
 
