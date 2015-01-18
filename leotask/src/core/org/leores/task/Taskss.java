@@ -6,9 +6,12 @@ import java.util.List;
 
 import org.leores.util.ClassInfo;
 import org.leores.util.DateInterval;
+import org.leores.util.FileUtil;
 import org.leores.util.LoadHashMap;
 import org.leores.util.Logger;
+import org.leores.util.SerialUtil;
 import org.leores.util.U;
+import org.leores.util.able.Processable1;
 
 public class Taskss extends Logger implements Serializable {
 	private static final long serialVersionUID = 4852566341714978930L;
@@ -193,7 +196,7 @@ public class Taskss extends Logger implements Serializable {
 		boolean rtn = false;
 		nFinished = 0;
 		nTaskss = 0;
-		if (sFLoad.contains("taskss")) {
+		if (sFLoad.endsWith("#.xml")) {
 			rtn = true;
 			startDate = new Date();
 			rtn = rtn && U.loadFromXML(this, sFLoad);
@@ -205,7 +208,7 @@ public class Taskss extends Logger implements Serializable {
 				for (int i = 0; i < nTaskss; i++) {
 					Tasks tasks = members.get(i);
 					loadValues(tasks);
-					tasks.sFLoad = sFLoad;
+					tasks.sFLoad = null;//set it to null to prevent tasks from loading config again.
 					if (bAggregateFile) {
 						tasks.sFPreFix = sFPreFix;
 					}
@@ -217,9 +220,8 @@ public class Taskss extends Logger implements Serializable {
 			String sLoad = getLoadStr();
 			log(sLoad);
 		} else {
-			Tasks tasks = new Tasks();
-			tasks.sFLoad = sFLoad;
-			tasks.sFCheckPoint = sFCheckPoint;
+			Tasks tasks = new Tasks(false);
+			loadValues(tasks);
 			tasks.start();
 		}
 		return rtn;
@@ -261,9 +263,8 @@ public class Taskss extends Logger implements Serializable {
 
 		if (bSaveData && dataLevels != null && dataLevels.size() > 0) {
 			rtn = true;
-			String sFile = sFData;
-			U.saveToCsvFile(this.getClass(), sFile);
-			U.saveToCsvFile(this, sFile);
+			String sOutString = SerialUtil.toOutStringCSV(this, this.sPatNumOut, true, null);
+			FileUtil.insertFileHead(sFData, sOutString);
 		}
 
 		return rtn;

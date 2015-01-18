@@ -91,7 +91,16 @@ public class Tasks extends Logger implements Serializable, NextRunnable {
 		return vMap(key);
 	}
 
+	public Tasks(boolean bLoadDefault) {
+		if (bLoadDefault) {
+			Taskss taskss = new Taskss();
+			taskss.loadValues(this);//load tasks parameters' default values.
+		}
+		return;
+	}
+
 	public Tasks() {
+		this(false);
 		return;
 	}
 
@@ -245,8 +254,6 @@ public class Tasks extends Logger implements Serializable, NextRunnable {
 
 	protected boolean prep() {
 		boolean rtn = true;
-		Taskss taskss = new Taskss();
-		taskss.loadValues(this);
 		int iLoadCP = loadCheckPoint();
 
 		ClassInfo ci = getClassInfo();
@@ -259,7 +266,7 @@ public class Tasks extends Logger implements Serializable, NextRunnable {
 			taskIdsToRun = new LinkedList<Integer>();
 			taskIdsRunning = new LinkedList<Integer>();
 
-			if (!sFLoad.contains("taskss")) {
+			if (sFLoad != null) {
 				rtn = rtn && U.loadFromXML(this, sFLoad);
 			}
 			rtn = rtn && U.hasNoNull(variables);

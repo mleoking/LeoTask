@@ -8,8 +8,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.RandomAccessFile;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
 
-public class FileUitl extends ListUtil {
+public class FileUtil extends ListUtil {
 
 	public static boolean bExistFile(String sFile) {
 		boolean rtn = false;
@@ -197,6 +200,72 @@ public class FileUitl extends ListUtil {
 		return rtn;
 	}
 
+	public static boolean insertFile(String sFile, long offset, byte[] content) {
+		boolean rtn = false;
+		try {
+			rtn = true;
+			String sFTemp = sFile + "~";
+			RandomAccessFile raf;
+			raf = new RandomAccessFile(new File(sFile), "rw");
+			long fileSize = raf.length();
+			if (fileSize >= offset) {
+				RandomAccessFile rafTemp = new RandomAccessFile(new File(sFTemp), "rw");
+				FileChannel fc = raf.getChannel();
+				FileChannel fcTemp = rafTemp.getChannel();
+				fc.transferTo(offset, (fileSize - offset), fcTemp);
+				fc.truncate(offset);
+				raf.seek(offset);
+				raf.write(content);
+				long newOffset = raf.getFilePointer();
+				fcTemp.position(0L);
+				fc.transferFrom(fcTemp, newOffset, (fileSize - offset));
+				fc.close();
+				fcTemp.close();
+				raf.close();
+				rafTemp.close();
+				deleteFile(sFTemp);
+			} else {
+				tLog(ll("LOG_ERROR"), "Can not insert into a file: offset>filesize!");
+				rtn = false;
+			}
+		} catch (FileNotFoundException e) {
+			rtn = false;
+			tLog(e);
+		} catch (IOException e) {
+			rtn = false;
+			tLog(e);
+		}
+		return rtn;
+	}
+
+	public static boolean insertFileHead(String sFile, byte[] content) {
+		return insertFile(sFile, 0L, content);
+	}
+
+	public static boolean insertFileHead(String sFile, String string) {
+		return insertFileHead(sFile, string.getBytes(Charset.forName("UTF-8")));
+	}
+
+	public static boolean insertFileTail(String sFile, byte[] content) {
+		boolean rtn = false;
+		try {
+			RandomAccessFile raf = new RandomAccessFile(new File(sFile), "r");
+			rtn = insertFile(sFile, raf.length(), content);
+			raf.close();
+		} catch (FileNotFoundException e) {
+			rtn = false;
+			tLog(e);
+		} catch (IOException e) {
+			rtn = false;
+			tLog(e);
+		}
+		return rtn;
+	}
+
+	public static boolean insertFileTail(String sFile, String string) {
+		return insertFileTail(sFile, string.getBytes(Charset.forName("UTF-8")));
+	}
+
 	/**
 	 * Append str to fw.
 	 * 
@@ -217,11 +286,12 @@ public class FileUitl extends ListUtil {
 		return rtn;
 	}
 
-	public static boolean appendToFile(String sFile, String str) {
+	public static boolean appendFile(String sFile, String str) {
 		boolean rtn = false;
 		FileWriter fw = createFileWriter(sFile, true);
 		rtn = append(fw, str);
 		close(fw);
 		return rtn;
 	}
+
 }

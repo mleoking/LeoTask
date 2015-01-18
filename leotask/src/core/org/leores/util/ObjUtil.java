@@ -34,7 +34,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class ObjUtil extends FileUitl {
+public class ObjUtil extends FileUtil {
 	public static Modifier modifier;
 
 	public static int modPub = modifier.PUBLIC;

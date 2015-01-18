@@ -22,6 +22,7 @@ public class Demo extends LogUtil {
 		//DataDemo.demo();
 		//DelimitedReaderDemo.demo();
 		//EpidemicDemo.demo();
+		//FileUtilDemo.demo();
 		//JGnuplotDemo.demo();
 		//MathDemo.demo();
 		//ModDemo.demo();

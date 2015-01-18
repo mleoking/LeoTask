@@ -25,22 +25,22 @@ public class EpidemicDemo extends Epidemic {
 	private static final long serialVersionUID = 2186149327686010965L;
 
 	public void compareNaiveAdvEst() {
-		Tasks tasks = new Tasks();
+		Tasks tasks = new Tasks(true);
 		tasks.sFLoad = "tasks-epidemic-compareNaiveAdvEst.xml";
 		tasks.start();
 
-		Epidemic epiAdvNoBn = new Epidemic();		
-		epiAdvNoBn.sMethods = "msSpreadNets";		
+		Epidemic epiAdvNoBn = new Epidemic();
+		epiAdvNoBn.sMethods = "msSpreadNets";
 		epiAdvNoBn.bnp = -1f;
-		
+
 		Epidemic epiNaiveNoBn = new Epidemic();
 		epiNaiveNoBn.sMethods = "msSpreadNetsNaive";
 		epiNaiveNoBn.bnp = -1f;
 
-		Epidemic epiAdvBn = new Epidemic();		
-		epiAdvBn.sMethods = "msSpreadNets";		
-		epiAdvBn.bnp = 0.1f;		
-		
+		Epidemic epiAdvBn = new Epidemic();
+		epiAdvBn.sMethods = "msSpreadNets";
+		epiAdvBn.bnp = 0.1f;
+
 		Epidemic epiNaiveBn = new Epidemic();
 		epiNaiveBn.sMethods = "msSpreadNetsNaive";
 		epiNaiveBn.bnp = 0.1f;
@@ -68,9 +68,9 @@ public class EpidemicDemo extends Epidemic {
 			jg.execute(plot);
 		}
 	}
-	
-	public void example(){
-		Tasks tasks = new Tasks();
+
+	public void example() {
+		Tasks tasks = new Tasks(true);
 		tasks.sFLoad = "tasks-epidemic.xml";
 		tasks.start();
 	}

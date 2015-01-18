@@ -346,7 +346,7 @@ public class JGnuplot extends Logger {
 							lineEvaled = lineEvaled.substring(U.sNoEval.length());
 						}
 						if (lineEvaled.length() > 0) {
-							U.appendToFile(sFile, lineEvaled + "\n");
+							U.appendFile(sFile, lineEvaled + "\n");
 						}
 						rtn = true;
 					} catch (TRuntimeException exception) {

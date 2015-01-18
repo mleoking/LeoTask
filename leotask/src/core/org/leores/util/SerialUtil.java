@@ -24,7 +24,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class SerialUitl extends ObjUtil {
+public class SerialUtil extends ObjUtil {
 
 	public static String[] toStrArray(Class tClass, Integer mod) {
 		String[] rtn = null;
@@ -529,7 +529,7 @@ public class SerialUitl extends ObjUtil {
 		if (fn != null) {
 			String outString = toOutString(tClass, before, after, delimiter);
 			if (outString != null) {
-				rtn = appendToFile(fn, outString);
+				rtn = appendFile(fn, outString);
 			}
 		}
 
@@ -560,6 +560,10 @@ public class SerialUitl extends ObjUtil {
 		return rtn;
 	}
 
+	public static String toOutStringCSV(Object tObj, String sPatNumOut, boolean bOutClass, Processable1<String, Object> pa1) {
+		return toOutString(tObj, "\"", "\"", ",", sPatNumOut, bOutClass, pa1);
+	}
+
 	public static boolean saveToFile(Object tObj, String sFile, String before, String after, String delimiter, String sPatNumOut, boolean bOutClass, Processable1<String, Object> pa1) {
 		boolean rtn = false;
 
@@ -567,7 +571,7 @@ public class SerialUitl extends ObjUtil {
 			invokeObjMethodByName(tObj, "beforeSaveObj", false, "ObjUtil.saveToFile");
 			String outString = toOutString(tObj, before, after, delimiter, sPatNumOut, bOutClass, pa1);
 			if (outString != null) {
-				rtn = appendToFile(sFile, outString);
+				rtn = appendFile(sFile, outString);
 			}
 			invokeObjMethodByName(tObj, "afterSaveObj", false, "ObjUtil.saveToFile");
 		}
