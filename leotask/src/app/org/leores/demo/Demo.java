@@ -16,7 +16,7 @@ public class Demo extends LogUtil {
 	 */
 	public static void main(String[] args) {
 		U.tLog("Set the working directory to be ${workspace_loc:leotask/demo} in Eclipse. In other IDEs set the working directory to the \"demo\" folder.");
-		U.tLog("Some demos require Gnuplot installed and its gnuplot command folder included in the PATH.");
+		U.tLog("Some demos require Gnuplot installed and its gnuplot command folder included in the system environment variable PATH.");
 		U.tLog("------------------");
 		//AnaDemo.demo();
 		//DataDemo.demo();
