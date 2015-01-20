@@ -59,6 +59,11 @@ public class Taskss extends Logger implements Serializable {
 		if (sFLoadArg != null) {
 			sFLoad = sFLoadArg;
 			rtn = true;
+		} else {
+			String sFLoadTaskss = "tasks#.xml";//Defalut Taskss load file
+			if (FileUtil.bExistFile(sFLoadTaskss)) {
+				sFLoad = sFLoadTaskss;
+			}
 		}
 
 		if (sFCheckPointArg != null) {
