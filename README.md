@@ -68,7 +68,7 @@ public class RollDice extends Task {
 </Tasks>
 ```
 
-Before running the example application, please install [Java](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) and include the the directories of the command _java_ in system's _PATH_ environment variable.
+Before running the example application, please install [Java](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) and include the the directory of the command _java_ in the system's _PATH_ environment variable.
 
 Chang the current directory to the "Demo" folder and then execute the following commnad
 
