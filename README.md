@@ -22,7 +22,7 @@ LeoTask is a parallel task running and results aggregation framework. It is a fr
 
 Please refer to [the introduction](https://github.com/mleoking/leotask/blob/master/leotask/introduction.pdf?raw=true) for building an example application using the framework.
 
-###Code (RollDice.java):
+### Code (RollDice.java):
 ```java
 public class RollDice extends Task {
     public Integer nSide; //Number of dice sides
@@ -49,7 +49,7 @@ public class RollDice extends Task {
 }
 ```
 
-###Configuration (rolldice.xml):
+### Configuration (rolldice.xml):
 ```xml
 <Tasks>
     <name val="task-rolldice"/><usage val="0.5"/><nRepeats val="5"/><checkInterval val="4"/>
@@ -75,6 +75,8 @@ Chang the current directory to the "Demo" folder and then execute the following 
     java -jar leotask.jar -load=rolldice.xml
 
 If you are using a MS windows system, you can also execute "rolldice.bat".
+
+Additional applications using the framework can be found in [LeoTaskApp](https://github.com/mleoking/LeoTaskApp).
 
 ## References:
 
