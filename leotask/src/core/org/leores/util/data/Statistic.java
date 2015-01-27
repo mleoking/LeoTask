@@ -115,11 +115,6 @@ public class Statistic extends Logger implements Serializable, Cloneable {
 			capacity = initCapacity;
 		}
 
-		keyMap = null;
-		keyVals = null;
-		elements = null;
-		elementMap = null;
-
 		keyVals = new ArrayList<Object>(capacity);
 		keyMap = new HashMap<Object, Boolean>(capacity);
 		elements = new ArrayList<StatElement>(capacity);
@@ -508,6 +503,14 @@ public class Statistic extends Logger implements Serializable, Cloneable {
 		return (bUniqueKeys == null || bUniqueKeys == true);
 	}
 
+	public boolean bAllParVars() {
+		boolean rtn = false;
+		if (parVars != null && parVars.length == 1 && "$all$".equals(parVars[0])) {
+			rtn = true;
+		}
+		return rtn;
+	}
+
 	/**
 	 * Put the columns obj into the statistic pool. The valVar and parVars of
 	 * the obj have to be comparable!
@@ -539,6 +542,12 @@ public class Statistic extends Logger implements Serializable, Cloneable {
 				bValid = U.evalCheck(valid, data);
 			}
 			if (bValid) {
+				if (bAllParVars()) {
+					String[][] sFieldsAndValues = U.toStrArray(data);
+					if (sFieldsAndValues != null) {
+						parVars = sFieldsAndValues[0];
+					}
+				}
 				Object[] parValsObjs = U.getFieldValues(data, parVars, U.modAll);
 				if (parValsObjs != null) {//when parVars is not set, parValsObjs will be null
 					parVals = new ObjArray(parValsObjs, hashLevel);
@@ -585,7 +594,12 @@ public class Statistic extends Logger implements Serializable, Cloneable {
 				rtn = info.equals(stat.info);
 			}
 			//The two statistics' parVars and valVar must be the same.
-			rtn = rtn && (U.compare(parVars, stat.parVars) == 0) && (U.compare(valVar, stat.valVar) == 0);
+			if (rtn) {
+				rtn = U.compare(valVar, stat.valVar) == 0;
+				if (!bAllParVars() || elements.size() > 0) {
+					rtn = rtn && U.compare(parVars, stat.parVars) == 0;
+				}
+			}
 		}
 
 		return rtn;
@@ -608,6 +622,9 @@ public class Statistic extends Logger implements Serializable, Cloneable {
 		boolean rtn = false;
 
 		if (bMergeable(stat)) {
+			if (bAllParVars()) {
+				parVars = stat.parVars;
+			}
 			rtn = true;
 			for (int i = 0, size = stat.elements.size(); i < size; i++) {
 				StatElement eStati = stat.elements.get(i);

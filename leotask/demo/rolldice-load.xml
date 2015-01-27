@@ -1,0 +1,19 @@
+<Tasks>
+  <name val="task-rolldice"/><nRepeats val="5"/><dataLevels val="S;SA;S%T"/>
+  <!-- S%T save statistic results of each task individually without merging them. -->
+  <variables class="org.leores.task.app.RollDice">
+    <load val="
+      name=Dice2Side4;nDice=2;nSide=4}
+      nDice=3;nSide=6}
+      name=Dice4Side5;nDice=4;nSide=5}
+    "/>
+    <info val="nd=$nDice$,ns=$nSide$"/>
+  </variables>
+  <statistics>
+    <members>
+      <i><info val="afterTask@"/><valVar val="id"/><parVars val="$all$"/></i>
+      <i><info val="%plt-@afterStep@"/><valVar val="sum"/><parVars val="iRept;iStep"/></i>
+      <i><info val="afterRept@"/><valVar val="sum"/><parVars val="nameOrId"/></i>      
+    </members>
+  </statistics>
+</Tasks>

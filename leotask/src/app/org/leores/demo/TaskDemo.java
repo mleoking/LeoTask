@@ -16,6 +16,12 @@ public class TaskDemo {
 		tasks.sFLoad = "rolldice.xml";
 		tasks.start();
 	}
+	
+	public void runTaskUseLoadInConfig(){
+		Taskss taskss = new Taskss();
+		taskss.sFLoad = "rolldice-load.xml";
+		taskss.start();
+	}
 
 	public void runTaskSets() {
 		Taskss taskss = new Taskss();
@@ -25,9 +31,10 @@ public class TaskDemo {
 
 	public static void demo() {
 		TaskDemo demo = new TaskDemo();
-		demo.runTask();
+		//demo.runTask();
 		//demo.runTaskWay2();
-		demo.runTaskSets();
+		demo.runTaskUseLoadInConfig();
+		//demo.runTaskSets();
 	}
 
 }

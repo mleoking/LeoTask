@@ -37,7 +37,7 @@ public class Tasks extends Logger implements Serializable, NextRunnable {
 	public Integer nCheckPoints;//0:no check points
 	public Date startDate;
 	public Long duration;//in milliseconds
-	public List<String> dataLevels;//All levels: R;T;S;SA
+	public List<String> dataLevels;//All levels: R;T;S;SA;S%T. S%T: save results for each task individually without merging them.
 	public String sPatNumOut;
 	public Integer nFinished;
 
@@ -415,30 +415,44 @@ public class Tasks extends Logger implements Serializable, NextRunnable {
 		return rtn;
 	}
 
-	public synchronized void logStatData() {
-		if (statistics != null) {
-			if (statistics.sPatNumOut == null) {
-				statistics.sPatNumOut = sPatNumOut;
+	/**
+	 * When task!=null, this function is called to save the statistic results of
+	 * each task individually without merging them.
+	 * 
+	 * @param task
+	 */
+	public synchronized void logStatData(Task task) {
+		Statistics stats = statistics;
+		String sName = name;
+		if (task != null) {
+			stats = task.statistics;
+			sName += "@" + task.getNameOrId();
+		}
+		if (stats != null) {
+			if (stats.sPatNumOut == null) {
+				stats.sPatNumOut = sPatNumOut;
 			}
 			if (dataLevels.contains("S") || dataLevels.contains("SA")) {
 				String logFile = sFData;
 				if (bSaveData) {
-					writeDataTitle(logFile);
+					if (task == null) {
+						writeDataTitle(logFile);
+					}
 					if (dataLevels.contains("SA")) {
-						U.saveToCsvFile(name + "@SA", logFile);
-						statistics.saveAggregateToCsvFile(logFile);
+						U.saveToCsvFile(sName + "@SA", logFile);
+						stats.saveAggregateToCsvFile(logFile);
 					}
 					if (dataLevels.contains("S")) {
-						U.saveToCsvFile(name + "@S", logFile);
-						statistics.saveToCsvFile(logFile);
+						U.saveToCsvFile(sName + "@S", logFile);
+						stats.saveToCsvFile(logFile);
 					}
 				}
 				if (bPrintData) {
 					if (dataLevels.contains("S")) {
-						statistics.print();
+						stats.print();
 					}
 					if (dataLevels.contains("SA")) {
-						statistics.printAggregate();
+						stats.printAggregate();
 					}
 				}
 			}
@@ -451,7 +465,9 @@ public class Tasks extends Logger implements Serializable, NextRunnable {
 
 		log("Log statistic data" + " Elapsed Time: " + di.inMinutes() + " Minutes.");
 		duration = di.inMilliseconds();
-		logStatData();
+		if (!dataLevels.contains("S%T")) {
+			logStatData(null);
+		}
 		boolean bDeleted = deleteCheckPoints(-1);
 		if (!bDeleted) {
 			log("Failed to delete checkpoints: *.ckp! Please delete them!");
@@ -511,7 +527,12 @@ public class Tasks extends Logger implements Serializable, NextRunnable {
 	}
 
 	public synchronized void end(Task task) {
-		if (statistics != null) {
+		if (dataLevels.contains("S%T")) {
+			if (nFinished == 0 && bSaveData) {
+				writeDataTitle(sFData);
+			}
+			logStatData(task);
+		} else if (statistics != null) {
 			statistics.merge(task.statistics);
 		}
 		//remove the first occurrence of the value (not the index) of task.id
@@ -569,11 +590,11 @@ public class Tasks extends Logger implements Serializable, NextRunnable {
 				}
 				Date nowDate = new Date();
 				DateInterval di = new DateInterval(nowDate, startDate);
-				String sTaskInfo = "";
-				if (task.info != null) {
-					sTaskInfo = "\t|\t" + task.info;
+				String sTaskNameAndInfo = task.getNameAndInfo();
+				if (sTaskNameAndInfo.length() > 0) {
+					sTaskNameAndInfo = "\t|\t" + sTaskNameAndInfo;
 				}
-				log(sAct + "Task: " + taskId + "/" + nTasks + " Elapsed Time: " + di.inSeconds() + " Seconds." + sTaskInfo);
+				log(sAct + "Task: " + taskId + "/" + nTasks + " Elapsed Time: " + di.inSeconds() + " Seconds." + sTaskNameAndInfo);
 				if (bInitialized) {
 					if (statistics != null) {
 						task.statistics = statistics.newClone();

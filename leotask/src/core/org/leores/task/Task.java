@@ -29,6 +29,7 @@ public class Task extends Logger implements Runnable, Serializable {
 	protected Tasks tasks;
 	protected RandomEngine rand;
 	protected Boolean bRenewSeed;
+	public String name;
 	public Integer iRept;
 	public Integer iStep;
 	public Integer id;
@@ -264,16 +265,34 @@ public class Task extends Logger implements Runnable, Serializable {
 		return rtn;
 	}
 
-	protected int statMethods() {
-		String sLoad = smLoad;
-		if (info != null) {
-			if (sLoad == null) {
-				sLoad = "";
-			}
-			sLoad += "info=" + info + ";";
-			//sLoad += "$setInfo(1,)$;";//To remove the plot title
+	public String getNameOrId() {
+		String rtn = "" + id;
+		if (name != null) {
+			rtn = name;
 		}
-		return statistics.statMethods(sStatMethodPointTask, tasks.sFPreFix + "I" + id + "_", sLoad);
+		return rtn;
+	}
+
+	public String getNameAndInfo() {
+		String rtn = "";
+		if (name != null) {
+			rtn += name;
+		}
+		if (info != null) {
+			rtn += "@" + info;
+		}
+		return rtn;
+	}
+
+	protected int statMethods() {
+		String sLoad = "", sNameAndInfo = getNameAndInfo();
+		if (sNameAndInfo.length() > 0) {
+			sLoad += "info=" + sNameAndInfo + ";";
+		}
+		if (smLoad != null) {
+			sLoad += smLoad;//"$setInfo(1,)$;";//To remove the plot title
+		}
+		return statistics.statMethods(sStatMethodPointTask, tasks.sFPreFix + getNameOrId() + "_", sLoad);
 	}
 
 	protected boolean prepTask() {
@@ -315,7 +334,9 @@ public class Task extends Logger implements Runnable, Serializable {
 				} else {
 					rtn = (Boolean) U.invokeMethod(this, mTask);
 				}
-				afterTask();
+				if (rtn) {
+					afterTask();
+				}
 			}
 		}
 		return rtn;
@@ -366,7 +387,9 @@ public class Task extends Logger implements Runnable, Serializable {
 				} else {
 					rtn = (Boolean) U.invokeMethod(this, mRept);
 				}
-				afterRept();
+				if (rtn) {
+					afterRept();
+				}
 			}
 		}
 		return rtn;
@@ -408,7 +431,9 @@ public class Task extends Logger implements Runnable, Serializable {
 				} else {
 					rtn = (Boolean) U.invokeMethod(this, mStep);
 				}
-				afterStep();
+				if (rtn) {
+					afterStep();
+				}
 			}
 		}
 		return rtn;
