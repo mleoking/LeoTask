@@ -274,7 +274,7 @@ public class Tasks extends Logger implements Serializable, NextRunnable {
 			if (rtn) {
 				nTasks = variables.nValueSets;
 				if (nTasks > 0) {
-					if (seed == null) {
+					if (seed == null || seed == -1) {
 						seed = System.currentTimeMillis();
 					}
 					if (sFPreFix == null) {
