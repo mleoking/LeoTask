@@ -715,7 +715,7 @@ public class ObjUtil extends FileUtil {
 						if (bNoEval(sValue)) {
 							value = removeNoEval(sValue);
 						} else {
-							value = eval(sValue, obj);
+							value = eval(sValue, obj, bException);
 						}
 					}
 					rtn = true;
@@ -868,6 +868,8 @@ public class ObjUtil extends FileUtil {
 		int flags = 0;
 		if (bException) {
 			flags = EVAL_InvalidException;
+		} else {
+			flags = EVAL_InvalidIgnore;
 		}
 		String rtn = evalVariable(str, obj, sPatNumOut, flags);
 		rtn = evalExpression(rtn, sPatNumOut, flags); //bIgnoreInvalid and bIgnoreNull are of the same meaning an evaluation of expressions.
@@ -1009,8 +1011,6 @@ public class ObjUtil extends FileUtil {
 	public static boolean copy(Object oTo, Object oFrom) {
 		return copy(oTo, oFrom, null, modAll, modAll);
 	}
-
-
 
 	public static int processFields(Object tObj, Integer mod, Processable2<Boolean, Object, Field> pa2) {
 		int rtn = 0;
