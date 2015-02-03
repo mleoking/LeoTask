@@ -55,6 +55,17 @@ public class Task extends Logger implements Runnable, Serializable {
 		return vMap(key);
 	}
 
+	/**
+	 * Get the value of a field in the Tasks corresponding to this task.
+	 * 
+	 * @param sField
+	 * @return
+	 */
+	public Object vTasks(String sField) {
+		Object rtn = U.getFieldValue(tasks, sField, U.modAll);
+		return rtn;
+	}
+
 	public static ClassInfo getClassInfo() {
 		ClassInfo rtn = new ClassInfo();
 
@@ -74,27 +85,6 @@ public class Task extends Logger implements Runnable, Serializable {
 		ClassInfo ci = (ClassInfo) tTasks.invokeTaskClassStaticMethod("getClassInfo");
 		U.tLog(ci.toShortStr());
 		return;
-	}
-
-	/**
-	 * This is where you can add extra task ids by using<br>
-	 * <b>tTasks.addTaskIds2Run(Integer taskId)</b> or
-	 * <b>tTasks.addTaskIds2Run(List lids)</b><br>
-	 * It is called in Tasks.start()
-	 * 
-	 * @param tTasks
-	 */
-	public static void afterDoAll(Tasks tTasks) {
-		return;
-	}
-
-	/**
-	 * It is called in Tasks.end()
-	 * 
-	 * @param tTasks
-	 */
-	public static void afterAll(Tasks tTasks) {
-		tTasks.getStatistics().statMethods(sStatMethodPointTasks, tTasks.sFPreFix, smLoad);
 	}
 
 	public Task() {
@@ -287,12 +277,23 @@ public class Task extends Logger implements Runnable, Serializable {
 	protected int statMethods() {
 		String sLoad = "", sNameAndInfo = getNameAndInfo();
 		if (sNameAndInfo.length() > 0) {
-			sLoad += "info=" + sNameAndInfo + ";";
+			sLoad += "info=" + sNameAndInfo + " | $info$;";
 		}
 		if (smLoad != null) {
-			sLoad += smLoad;//"$setInfo(1,)$;";//To remove the plot title
+			sLoad += smLoad;
 		}
 		return statistics.statMethods(sStatMethodPointTask, tasks.sFPreFix + getNameOrId() + "_", sLoad);
+	}
+	
+	protected static int statMethods(Tasks tTasks) {
+		String sLoad = "", sNameAndInfo = tTasks.getNameAndInfo();
+		if (sNameAndInfo.length() > 0) {
+			sLoad += "info=" + sNameAndInfo + " | $info$;";
+		}
+		if (smLoad != null) {
+			sLoad += smLoad;
+		}
+		return tTasks.getStatistics().statMethods(sStatMethodPointTasks, tTasks.sFPreFix, sLoad);
 	}
 
 	protected boolean prepTask() {
@@ -447,6 +448,27 @@ public class Task extends Logger implements Runnable, Serializable {
 
 	protected void end() {
 		tasks.end(this);//this has to be called every time start is called to ensure the Tasks know the current task is finished.		
+	}
+	
+	/**
+	 * This is where you can add extra task ids by using<br>
+	 * <b>tTasks.addTaskIds2Run(Integer taskId)</b> or
+	 * <b>tTasks.addTaskIds2Run(List lids)</b><br>
+	 * It is called in Tasks.start()
+	 * 
+	 * @param tTasks
+	 */
+	public static void afterDoAll(Tasks tTasks) {
+		return;
+	}
+
+	/**
+	 * It is called in Tasks.end()
+	 * 
+	 * @param tTasks
+	 */
+	public static void afterAll(Tasks tTasks) {
+		statMethods(tTasks);
 	}
 
 	public void run() {

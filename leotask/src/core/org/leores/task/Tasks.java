@@ -64,7 +64,7 @@ public class Tasks extends Logger implements Serializable, NextRunnable {
 	//Task apps could use the info and lo to store information needed to be saved to and load from checkpoint files.
 	//info and lo have to be Serializable if the tasks were to save checkpoints.
 	public LoadHashMap<String, Object> vMap;
-	public Object info = "";
+	public Object info;
 
 	private static final Object tLock = new Object();
 
@@ -80,6 +80,17 @@ public class Tasks extends Logger implements Serializable, NextRunnable {
 		rtn.contact = "University College London";
 		rtn.description = "Transparent parallel task running and results aggregation system.";
 
+		return rtn;
+	}
+	
+	public String getNameAndInfo() {
+		String rtn = "";
+		if (name != null) {
+			rtn += name;
+		}
+		if (info != null) {
+			rtn += "@" + info;
+		}
 		return rtn;
 	}
 
