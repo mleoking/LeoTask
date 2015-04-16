@@ -10,7 +10,6 @@ LeoTask is a parallel task running and results aggregation framework. It is a fr
 * Flexible & configuration-based result aggregation
 * Programming model focusing only on the key logic
 * Reliable & automatic interruption recovery
-* ...
 
 ## Utilities
 * Dynamic & cloneable networks structures: a node, a link, a network, a network set (within which networks can overlap with each other), multiplex networks
@@ -18,7 +17,6 @@ LeoTask is a parallel task running and results aggregation framework. It is a fr
 * Network generation according to common network models
 * DelimitedReader: a sophisticated reader that explores CSV (Comma-separated values) files like a database
 * Fast random number generator based on the Mersenne Twister algorithm
-* ...
 
 ## Example Application:
 
