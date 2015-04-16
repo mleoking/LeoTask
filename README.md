@@ -13,7 +13,7 @@ LeoTask is a parallel task running and results aggregation framework. It is a fr
 * ...
 
 ## Utilities
-* Dynamic & cloneable networks structures: a node, a link, a network, and a network set (within which networks can overlap with each other).
+* Dynamic & cloneable networks structures: a node, a link, a network, a network set (within which networks can overlap with each other), multiplex networks
 * Integration with Gnuplot
 * Network generation according to common network models
 * DelimitedReader: a sophisticated reader that explores CSV (Comma-separated values) files like a database
