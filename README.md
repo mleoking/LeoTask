@@ -14,8 +14,8 @@ LeoTask is a parallel task running and results aggregation framework. It is a fr
 ## Utilities
 * All dynamic & cloneable networks structures: a node, a link, a network, a network set (within which networks can overlap with each other), multiplex networks.
 * Integration with Gnuplot: hybrid programming with Gnuplot, output statistic results as Gnuplot scripts.
-* Network generation according to common network models: Random networks, Scale-free networks, etc.
-* DelimitedReader: a sophisticated reader that explores CSV (Comma-separated values) files like a database
+* Network generation according to common network models: random networks, scale-free networks, etc.
+* DelimitedReader: a sophisticated reader that explores CSV (Comma-separated values) files like a database.
 * Fast random number generator based on the Mersenne Twister algorithm.
 
 ## Example Application:
