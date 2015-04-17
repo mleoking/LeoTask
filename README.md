@@ -2,7 +2,7 @@
 
 LeoTask is a parallel task running and results aggregation framework. It is a free and open-source project designed to facilitate running computational intensive tasks [1]. The framework implements the MapReduce model, allocating tasks to multi-cores of a computer and aggregating results according to a XML based configuration file. The framework includes mechanisms to automatically recover applications from interruptions caused by accidents (e.g. Power Cut). Applications using the framework can continue running after an interruption without losing its calculated results.
 
-[**Download the latest version**](leotask/demo/leotask.zip?raw=true)
+[**Download the latest version**](leotask/demo/leotask.zip?raw=true) | [**See the applications**](https://github.com/mleoking/LeoTaskApp) | [**Join the discussion**](http://groups.google.com/forum/#!forum/leotask)
 
 ## Features:
 
@@ -10,6 +10,7 @@ LeoTask is a parallel task running and results aggregation framework. It is a fr
 * Flexible & configuration-based result aggregation.
 * Programming model focusing only on the key logic.
 * Reliable & automatic interruption recovery.
+* Ultra lightweight ~ 300KB Jar.
 
 ## Utilities
 * All dynamic & cloneable networks structures: a node, a link, a network, a network set (within which networks can overlap with each other), multiplex networks.
@@ -75,8 +76,6 @@ Chang the current directory to the "Demo" folder and then execute the following 
     java -jar leotask.jar -load=rolldice.xml
 
 If you are using a MS windows system, you can also execute "rolldice.bat".
-
-Additional applications using the framework can be found in [LeoTaskApp](https://github.com/mleoking/LeoTaskApp).
 
 ## References:
 
