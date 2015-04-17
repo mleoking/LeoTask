@@ -18,6 +18,7 @@ LeoTask is a parallel task running and results aggregation framework. It is a fr
 * Network generation according to common network models: random networks, scale-free networks, etc.
 * DelimitedReader: a sophisticated reader that explores CSV (Comma-Separated Values) files like a database.
 * Fast random number generator based on the Mersenne Twister algorithm.
+* Versatile curve fitter and function value optimizer (minimizer).
 
 ## Example Application:
 
