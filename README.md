@@ -44,7 +44,7 @@ public class RollDice extends Task {
     public boolean step() {
         boolean rtn = iStep <= nDice;
         if (rtn) {
-            sum += (int) (rand.nextDouble() * nSide+1);
+            sum += (int) (rand.nextDouble() * nSide + 1);
         }
         return rtn;
     }
