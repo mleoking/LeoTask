@@ -44,7 +44,7 @@ public class RollDice extends Task {
     public boolean step() {
         boolean rtn = iStep <= nDice;
         if (rtn) {
-            sum += (int) (rand.nextDouble() * nSide);
+            sum += (int) (rand.nextDouble() * nSide+1);
         }
         return rtn;
     }
@@ -54,7 +54,7 @@ public class RollDice extends Task {
 ### Configuration (rolldice.xml):
 ```xml
 <Tasks>
-    <name val="task-rolldice"/><usage val="0.5"/><nRepeats val="5"/><checkInterval val="4"/>
+    <name val="task-rolldice"/><usage val="0.9"/><nRepeats val="2000"/><checkInterval val="4"/>
     <variables class="org.leores.task.app.RollDice">    
         <nSide val="2;4;6"/>
         <nDice val="2:1:5"/><!--from 2 to 5 with a step of 1, i.e. 2;3;4;5 -->
