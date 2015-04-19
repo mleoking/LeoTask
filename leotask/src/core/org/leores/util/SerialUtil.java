@@ -403,30 +403,34 @@ public class SerialUtil extends ObjUtil {
 		boolean rtn = false;
 
 		if (tObj != null && U.valid(sFile)) {
-			try {
-				File file = new File(sFile);
-				DocumentBuilderFactory dBFactory = DocumentBuilderFactory.newInstance();
-				DocumentBuilder dBuilder;
-				dBuilder = dBFactory.newDocumentBuilder();
-				Document doc = dBuilder.parse(file);
-				doc.getDocumentElement().normalize();
+			if (U.bExistFile(sFile)) {
+				try {
+					File file = new File(sFile);
+					DocumentBuilderFactory dBFactory = DocumentBuilderFactory.newInstance();
+					DocumentBuilder dBuilder;
+					dBuilder = dBFactory.newDocumentBuilder();
+					Document doc = dBuilder.parse(file);
+					doc.getDocumentElement().normalize();
 
-				Class objClass = tObj.getClass();
-				Element eRoot = doc.getDocumentElement();
-				String objClassName = objClass.getName();
-				String docRootName = eRoot.getNodeName();
+					Class objClass = tObj.getClass();
+					Element eRoot = doc.getDocumentElement();
+					String objClassName = objClass.getName();
+					String docRootName = eRoot.getNodeName();
 
-				if (objClassName.indexOf(docRootName) < 0 && bUnMatchException) {
-					throw new TRuntimeException("loadFromXML: root element does not match the Object class! [sFile,objClassName,docRootName]:", sFile, objClassName, docRootName);
+					if (objClassName.indexOf(docRootName) < 0 && bUnMatchException) {
+						throw new TRuntimeException("loadFromXML: root element does not match the Object class! [sFile,objClassName,docRootName]:", sFile, objClassName, docRootName);
+					}
+
+					rtn = loadFromXML(tObj, eRoot);
+				} catch (ParserConfigurationException e) {
+					tLog(e);
+				} catch (SAXException e) {
+					tLog(e);
+				} catch (IOException e) {
+					tLog(e);
 				}
-
-				rtn = loadFromXML(tObj, eRoot);
-			} catch (ParserConfigurationException e) {
-				tLog(e);
-			} catch (SAXException e) {
-				tLog(e);
-			} catch (IOException e) {
-				tLog(e);
+			} else {
+				throw new TRuntimeException("loadFromXML: file does not exist! [sFile]:", sFile);
 			}
 		}
 

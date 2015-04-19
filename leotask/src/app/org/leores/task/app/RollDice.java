@@ -49,7 +49,7 @@ public class RollDice extends Task {
 	public boolean step() {
 		boolean rtn = iStep <= nDice;
 		if (rtn) {
-			sum += (int) (rand.nextDouble() * nSide);
+			sum += (int) (rand.nextDouble() * nSide + 1);
 		}
 		return rtn;
 	}
@@ -87,7 +87,7 @@ public class RollDice extends Task {
 			{
 				xlabel = "No. of sides";
 				ylabel = "Sum";
-				yrange = "[0:9]";
+				yrange = "[0:15]";
 				extra2 = "unset key;";
 			}
 		};

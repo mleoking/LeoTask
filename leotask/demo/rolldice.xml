@@ -1,5 +1,5 @@
 <Tasks>
-  <name val="task-rolldice"/><usage val="0.5"/><nRepeats val="5"/><checkInterval val="4"/>
+  <name val="rolldice"/><usage val="0.9"/><nRepeats val="2000"/><checkInterval val="4"/>
   <!--<sTaskMethodEnd val="mDrawPDF"/>--><!-- Uncomment this line if you have installed gnuplot4.6.5 and included its directory in the system variable PATH -->
   <variables class="org.leores.task.app.RollDice">    
     <nSide val="2;4;6"/>

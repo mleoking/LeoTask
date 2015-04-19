@@ -1,5 +1,5 @@
 <Taskss>
-  <name val="rolldices"/><usage val="0.5"/><nRepeats val="5"/><!--<dataLevels val="SA"/>-->
+  <name val="rolldices"/><usage val="0.9"/><nRepeats val="2000"/><!--<dataLevels val="SA"/>-->
   <sNameToRun val="setX;set1"/><!--<sPatNameToRun val=".*set\d"/>--><!--<bAggregateFile val="false"/>-->
   <vMap val="~ls=info=rolldices $id$ nSide:$nSide$ nDice:$nDice$;logInfo=~afterRept@$sum$;}"/>
   <members>
