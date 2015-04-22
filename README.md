@@ -13,12 +13,12 @@ LeoTask is a parallel task running and results aggregation framework. It is a fr
 * Ultra lightweight ~ 300KB Jar.
 
 ## Utilities
-* All dynamic & cloneable networks structures: a node, a link, a network, a network set (within which networks can overlap with each other), multiplex networks.
-* Integration with Gnuplot: hybrid programming with Gnuplot, output statistic results as Gnuplot scripts.
-* Network generation according to common network models: random networks, scale-free networks, etc.
-* DelimitedReader: a sophisticated reader that explores CSV (Comma-Separated Values) files like a database.
-* Fast random number generator based on the Mersenne Twister algorithm.
-* Versatile curve fitter and function value optimizer (minimizer).
+* [All dynamic & cloneable networks structures](leotask/src/app/org/leores/demo/NetDemo.java): a node, a link, a network, a network set (within which networks can overlap with each other), multiplex networks.
+* [Integration with Gnuplot](leotask/src/app/org/leores/demo/JGnuplotDemo.java): hybrid programming with Gnuplot, output statistic results as Gnuplot scripts.
+* [Network generation according to common network models](leotask/src/app/org/leores/demo/ModDemo.java): random networks, scale-free networks, etc.
+* [DelimitedReader](leotask/src/app/org/leores/demo/DelimitedReaderDemo.java): a sophisticated reader that explores CSV (Comma-Separated Values) files like a database.
+* [Fast random number generator based on the Mersenne Twister algorithm](leotask/src/app/org/leores/demo/RandomUtilDemo.java).
+* [Versatile curve fitter and function value optimizer (minimizer)](leotask/src/app/org/leores/demo/MathDemo.java).
 
 ## Example Application:
 
