@@ -70,7 +70,7 @@ public class RollDice extends Task {
 </Tasks>
 ```
 
-Before running the example application, please install [Java](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) and include the the directory of the command _java_ in the system's _PATH_ environment variable. Windows system users can download and install (_install.bat_) the all-in-one runtime environment package: [LeoTaskRunEnv](https://github.com/mleoking/LeoTaskApp/releases/download/v1.0.0/LeoTaskRunEnv.zip)
+Before running the example application, please install [Java](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) and include the the directory of the command _java_ in the system's _PATH_ environment variable. Windows system users can alternatively download and install (_install.bat_) the all-in-one runtime environment package: [LeoTaskRunEnv](https://github.com/mleoking/LeoTaskApp/releases/download/v1.0.0/LeoTaskRunEnv.zip)
 
 Chang the current directory to the "Demo" folder and then execute the following commnad
 
