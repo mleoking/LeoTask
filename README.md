@@ -1,8 +1,8 @@
 #LeoTask
 
-LeoTask is a parallel task running and results aggregation framework. It is a free and open-source project designed to facilitate running computational intensive tasks [1]. The framework implements the MapReduce model, allocating tasks to multi-cores of a computer and aggregating results according to a XML based configuration file. The framework includes mechanisms to automatically recover applications from interruptions caused by accidents (e.g. Power Cut). Applications using the framework can continue running after an interruption without losing its calculated results.
+LeoTask is a parallel task running and results aggregation (MapReduce) framework. It is a free and open-source project designed to facilitate running computational intensive tasks [1]. The framework implements the MapReduce model, allocating tasks to multi-cores of a computer and aggregating results according to a XML based configuration file. The framework includes mechanisms to automatically recover applications from interruptions caused by accidents (e.g. Power Cut). Applications using the framework can continue running after an interruption without losing its calculated results.
 
-[**Download the latest version**](leotask/demo/leotask.zip?raw=true) | [**See the applications**](https://github.com/mleoking/LeoTaskApp) | [**Join the discussion**](http://groups.google.com/forum/#!forum/leotask)
+[**Download**](leotask/demo/leotask.zip?raw=true) | [**Introduction**](leotask/introduction.pdf?raw=true) | [**Applications**](https://github.com/mleoking/LeoTaskApp) | [**Discussion**](http://groups.google.com/forum/#!forum/leotask)
 
 ## Features:
 
@@ -13,16 +13,16 @@ LeoTask is a parallel task running and results aggregation framework. It is a fr
 * Ultra lightweight ~ 300KB Jar.
 
 ## Utilities
-* All dynamic & cloneable networks structures: a node, a link, a network, a network set (within which networks can overlap with each other), multiplex networks.
-* Integration with Gnuplot: hybrid programming with Gnuplot, output statistic results as Gnuplot scripts.
-* Network generation according to common network models: random networks, scale-free networks, etc.
-* DelimitedReader: a sophisticated reader that explores CSV (Comma-Separated Values) files like a database.
-* Fast random number generator based on the Mersenne Twister algorithm.
-* Versatile curve fitter and function value optimizer (minimizer).
+* [All dynamic & cloneable networks structures](leotask/src/app/org/leores/demo/NetDemo.java): a node, a link, a network, a network set (within which networks can overlap with each other), multiplex networks.
+* [Integration with Gnuplot](leotask/src/app/org/leores/demo/JGnuplotDemo.java): hybrid programming with Gnuplot, output statistic results as Gnuplot scripts.
+* [Network generation according to common network models](leotask/src/app/org/leores/demo/ModDemo.java): random networks, scale-free networks, etc.
+* [DelimitedReader](leotask/src/app/org/leores/demo/DelimitedReaderDemo.java): a sophisticated reader that explores CSV (Comma-Separated Values) files like a database.
+* [Fast random number generator based on the Mersenne Twister algorithm](leotask/src/app/org/leores/demo/RandomUtilDemo.java).
+* [Versatile curve fitter and function value optimizer (minimizer)](leotask/src/app/org/leores/demo/MathDemo.java).
 
 ## Example Application:
 
-Please refer to [the introduction](https://github.com/mleoking/leotask/blob/master/leotask/introduction.pdf?raw=true) for building an example application using the framework.
+Please refer to [the introduction](leotask/introduction.pdf?raw=true) for building an example application using the framework.
 
 ### Code (RollDice.java):
 ```java
@@ -70,7 +70,7 @@ public class RollDice extends Task {
 </Tasks>
 ```
 
-Before running the example application, please install [Java](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) and include the the directory of the command _java_ in the system's _PATH_ environment variable. Windows system users can download and install (_install.bat_) the all-in-one runtime environment package: [LeoTaskRunEnv](https://github.com/mleoking/LeoTaskApp/releases/download/v1.0.0/LeoTaskRunEnv.zip)
+Before running the example application, please install [Java](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) and include the the directory of the command _java_ in the system's _PATH_ environment variable. Windows system users can alternatively download and install (_install.bat_) the all-in-one runtime environment package: [LeoTaskRunEnv](https://github.com/mleoking/LeoTaskApp/releases/download/v1.0.0/LeoTaskRunEnv.zip)
 
 Chang the current directory to the "Demo" folder and then execute the following commnad
 
