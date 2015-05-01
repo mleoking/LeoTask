@@ -7,11 +7,12 @@ import org.leores.util.DelimitedReader;
 import org.leores.util.Logger;
 import org.leores.util.U;
 import org.leores.util.able.Processable1;
+import org.leores.util.data.DataTable;
 
 public class DelimitedReaderDemo extends Demo {
+	String sFile = "dreader.csv";
 
 	public void delimitedReader() {
-		String sFile = "dreader.csv";
 		String[] rowToStart1 = { "data", "start1" };
 		String[] columnsToRead = { "c4", "c1" };
 		String[] rowToEnd = { "data", "end" };
@@ -90,8 +91,6 @@ public class DelimitedReaderDemo extends Demo {
 	}
 
 	protected void _readRowPatterns(String[] rowPattern, String[] rowToStart, String[] columnsToRead, String[] rowToEnd) {
-		String sFile = "dreader.csv";
-
 		DelimitedReader dr;
 		String[] row;
 		List<String[]> lrow;
@@ -174,10 +173,32 @@ public class DelimitedReaderDemo extends Demo {
 		_readRowPatterns(rowPatterns, rowToStartEnd, columnsToRead, rowToStartEnd);
 	}
 
+	public void readRelatedData() {
+		log("Read from related data:");
+		try {
+			DelimitedReader dr = new DelimitedReader(sFile);
+			dr.prep(null, new String[] { "id", "name" });
+			dr.setValidRowPattern(new String[] { null, "Emily" });
+			String[] row = dr.readValidRow();
+			String id = row[0];
+			dr.prep(null, new String[] { "id", "date", "mood", "blood pressure", "heart rate" });
+			dr.setValidRowPattern(new String[] { id });
+			DataTable dt = dr.readValidDataTable();
+
+			log(dt.getColNames());
+			for (int i = 0, mi = dt.nRows(); i < mi; i++) {
+				log(dt.getRow(i));
+			}
+		} catch (FileNotFoundException e) {
+			log(e);
+		}
+	}
+
 	public static void demo() {
 		DelimitedReaderDemo drd = new DelimitedReaderDemo();
-		//drd.delimitedReader();
+		drd.delimitedReader();
 		drd.readRowPatterns();
+		drd.readRelatedData();
 	}
 
 }

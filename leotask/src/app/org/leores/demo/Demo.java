@@ -20,7 +20,7 @@ public class Demo extends LogUtil {
 		U.tLog("------------------");
 		//AnaDemo.demo();
 		//DataDemo.demo();
-		//DelimitedReaderDemo.demo();
+		DelimitedReaderDemo.demo();
 		//EpidemicDemo.demo();
 		//FileUtilDemo.demo();
 		//JGnuplotDemo.demo();
@@ -30,7 +30,7 @@ public class Demo extends LogUtil {
 		//ObjUtilDemo.demo();
 		//ProcessableDemo.demo();
 		//RandomUtilDemo.demo();
-		TaskDemo.demo();
+		//TaskDemo.demo();
 		//UtilDemo.demo();
 	}
 }

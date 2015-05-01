@@ -366,6 +366,10 @@ public class DelimitedReader extends Logger {
 	public DataTable readValidDataTable(boolean bBlock, String info) {
 		return readValidDataTable(bBlock, info, null);
 	}
+	
+	public DataTable readValidDataTable() {
+		return readValidDataTable(false, null, null);
+	}
 
 	public String[] getRowLastRead() {
 		return rowLastRead;
