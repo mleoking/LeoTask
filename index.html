@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>LeoTask by mleoking</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/mleoking/LeoTask">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>LeoTask</h1>
+            <h2>Lightweight-Productive-Reliable parallel task running and results aggregation (MapReduce on multicore)</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/mleoking/LeoTask/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/mleoking/LeoTask/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>
+<a id="leotask" class="anchor" href="#leotask" aria-hidden="true"><span class="octicon octicon-link"></span></a>LeoTask</h1>
+
+<p>LeoTask is a parallel task running and results aggregation (MapReduce) framework. It is a free and open-source project designed to facilitate running computational intensive tasks [1]. The framework implements the MapReduce model, allocating tasks to multi-cores of a computer and aggregating results according to a XML based configuration file. The framework includes mechanisms to automatically recover applications from interruptions caused by accidents (e.g. Power Cut). Applications using the framework can continue running after an interruption without losing its calculated results.</p>
+
+<p><a href="leotask/demo/leotask.zip?raw=true"><strong>Download</strong></a> | <a href="leotask/introduction.pdf?raw=true"><strong>Introduction</strong></a> | <a href="https://github.com/mleoking/LeoTaskApp"><strong>Applications</strong></a> | <a href="http://groups.google.com/forum/#!forum/leotask"><strong>Discussion</strong></a></p>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features:</h2>
+
+<ul>
+<li>Automatic &amp; parallel parameter space exploration.</li>
+<li>Flexible &amp; configuration-based result aggregation.</li>
+<li>Programming model focusing only on the key logic.</li>
+<li>Reliable &amp; automatic interruption recovery.</li>
+<li>Ultra lightweight ~ 300KB Jar.</li>
+</ul>
+
+<h2>
+<a id="utilities" class="anchor" href="#utilities" aria-hidden="true"><span class="octicon octicon-link"></span></a>Utilities:</h2>
+
+<ul>
+<li>
+<a href="leotask/src/app/org/leores/demo/NetDemo.java">All dynamic &amp; cloneable networks structures</a>: a node, a link, a network, a network set (within which networks can overlap with each other), multiplex networks.</li>
+<li>
+<a href="leotask/src/app/org/leores/demo/JGnuplotDemo.java">Integration with Gnuplot</a>: hybrid programming with Gnuplot, output statistic results as Gnuplot scripts.</li>
+<li>
+<a href="leotask/src/app/org/leores/demo/ModDemo.java">Network generation according to common network models</a>: random networks, scale-free networks, etc.</li>
+<li>
+<a href="leotask/src/app/org/leores/demo/DelimitedReaderDemo.java">DelimitedReader</a>: a sophisticated reader that explores CSV (Comma-Separated Values) files like a database.</li>
+<li>
+<a href="leotask/src/app/org/leores/demo/RandomUtilDemo.java">Fast random number generator based on the Mersenne Twister algorithm</a>.</li>
+<li>
+<a href="leotask/src/app/org/leores/demo/MathDemo.java">Versatile curve fitter and function value optimizer (minimizer)</a>.</li>
+</ul>
+
+<h2>
+<a id="example-application" class="anchor" href="#example-application" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example Application:</h2>
+
+<p>Please refer to <a href="leotask/introduction.pdf?raw=true">the introduction</a> for building an example application using the framework.</p>
+
+<h3>
+<a id="code-rolldicejava" class="anchor" href="#code-rolldicejava" aria-hidden="true"><span class="octicon octicon-link"></span></a>Code (RollDice.java):</h3>
+
+<div class="highlight highlight-source-java"><pre><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">RollDice</span> <span class="pl-k">extends</span> <span class="pl-e">Task</span> {
+    <span class="pl-k">public</span> <span class="pl-smi">Integer</span> nSide; <span class="pl-c">//Number of dice sides</span>
+    <span class="pl-k">public</span> <span class="pl-smi">Integer</span> nDice; <span class="pl-c">//Number of dices to roll</span>
+    <span class="pl-k">public</span> <span class="pl-smi">Integer</span> sum;<span class="pl-c">//Sum of the results of nDice dices</span>
+
+    <span class="pl-k">public</span> <span class="pl-k">boolean</span> <span class="pl-en">prepTask</span>() {
+        <span class="pl-k">boolean</span> rtn <span class="pl-k">=</span> nSide <span class="pl-k">&gt;</span> <span class="pl-c1">0</span> <span class="pl-k">&amp;&amp;</span> nDice <span class="pl-k">&gt;</span> <span class="pl-c1">0</span>;
+        <span class="pl-k">return</span> rtn;
+    }
+
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">beforeRept</span>() {
+        <span class="pl-v">super</span><span class="pl-k">.</span>beforeRept();
+        sum <span class="pl-k">=</span> <span class="pl-c1">0</span>;
+    }
+
+    <span class="pl-k">public</span> <span class="pl-k">boolean</span> <span class="pl-en">step</span>() {
+        <span class="pl-k">boolean</span> rtn <span class="pl-k">=</span> iStep <span class="pl-k">&lt;=</span> nDice;
+        <span class="pl-k">if</span> (rtn) {
+            sum <span class="pl-k">+=</span> (<span class="pl-k">int</span>) (rand<span class="pl-k">.</span>nextDouble() <span class="pl-k">*</span> nSide <span class="pl-k">+</span> <span class="pl-c1">1</span>);
+        }
+        <span class="pl-k">return</span> rtn;
+    }
+}</pre></div>
+
+<h3>
+<a id="configuration-rolldicexml" class="anchor" href="#configuration-rolldicexml" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration (rolldice.xml):</h3>
+
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">Tasks</span>&gt;
+    &lt;<span class="pl-ent">name</span> <span class="pl-e">val</span>=<span class="pl-s"><span class="pl-pds">"</span>task-rolldice<span class="pl-pds">"</span></span>/&gt;&lt;<span class="pl-ent">usage</span> <span class="pl-e">val</span>=<span class="pl-s"><span class="pl-pds">"</span>0.9<span class="pl-pds">"</span></span>/&gt;&lt;<span class="pl-ent">nRepeats</span> <span class="pl-e">val</span>=<span class="pl-s"><span class="pl-pds">"</span>2000<span class="pl-pds">"</span></span>/&gt;&lt;<span class="pl-ent">checkInterval</span> <span class="pl-e">val</span>=<span class="pl-s"><span class="pl-pds">"</span>4<span class="pl-pds">"</span></span>/&gt;
+    &lt;<span class="pl-ent">variables</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>org.leores.task.app.RollDice<span class="pl-pds">"</span></span>&gt;    
+        &lt;<span class="pl-ent">nSide</span> <span class="pl-e">val</span>=<span class="pl-s"><span class="pl-pds">"</span>2;4;6<span class="pl-pds">"</span></span>/&gt;
+        &lt;<span class="pl-ent">nDice</span> <span class="pl-e">val</span>=<span class="pl-s"><span class="pl-pds">"</span>2:1:5<span class="pl-pds">"</span></span>/&gt;<span class="pl-c">&lt;!--from 2 to 5 with a step of 1, i.e. 2;3;4;5 --&gt;</span>
+    &lt;/<span class="pl-ent">variables</span>&gt;
+    &lt;<span class="pl-ent">statistics</span>&gt;
+        &lt;<span class="pl-ent">members</span>&gt;
+            &lt;<span class="pl-ent">i</span>&gt;&lt;<span class="pl-ent">info</span> <span class="pl-e">val</span>=<span class="pl-s"><span class="pl-pds">"</span>Fig1%pltm+@afterRept@<span class="pl-pds">"</span></span>/&gt;&lt;<span class="pl-ent">valVar</span> <span class="pl-e">val</span>=<span class="pl-s"><span class="pl-pds">"</span>sum;#$sum$/$nDice$#<span class="pl-pds">"</span></span>/&gt;
+               &lt;<span class="pl-ent">parVars</span> <span class="pl-e">val</span>=<span class="pl-s"><span class="pl-pds">"</span>nSide;nDice<span class="pl-pds">"</span></span>/&gt;&lt;/<span class="pl-ent">i</span>&gt;
+            &lt;<span class="pl-ent">i</span>&gt;&lt;<span class="pl-ent">info</span> <span class="pl-e">val</span>=<span class="pl-s"><span class="pl-pds">"</span>Fig2%plt+@afterRept@<span class="pl-pds">"</span></span>/&gt;&lt;<span class="pl-ent">valVar</span> <span class="pl-e">val</span>=<span class="pl-s"><span class="pl-pds">"</span>sum<span class="pl-pds">"</span></span>/&gt;&lt;<span class="pl-ent">parVars</span> <span class="pl-e">val</span>=<span class="pl-s"><span class="pl-pds">"</span>nSide<span class="pl-pds">"</span></span>/&gt;&lt;/<span class="pl-ent">i</span>&gt;
+            &lt;<span class="pl-ent">i</span>&gt;&lt;<span class="pl-ent">info</span> <span class="pl-e">val</span>=<span class="pl-s"><span class="pl-pds">"</span>Fig3%plt+@afterRept@<span class="pl-pds">"</span></span>/&gt;&lt;<span class="pl-ent">valVar</span> <span class="pl-e">val</span>=<span class="pl-s"><span class="pl-pds">"</span>sum<span class="pl-pds">"</span></span>/&gt;&lt;<span class="pl-ent">parVars</span> <span class="pl-e">val</span>=<span class="pl-s"><span class="pl-pds">"</span>nDice<span class="pl-pds">"</span></span>/&gt;&lt;/<span class="pl-ent">i</span>&gt; 
+        &lt;/<span class="pl-ent">members</span>&gt;
+    &lt;/<span class="pl-ent">statistics</span>&gt;
+&lt;/<span class="pl-ent">Tasks</span>&gt;</pre></div>
+
+<p>Before running the example application, please install <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">Java</a> and include the the directory of the command <em>java</em> in the system's <em>PATH</em> environment variable. Windows system users can alternatively download and install (<em>install.bat</em>) the all-in-one runtime environment package: <a href="https://github.com/mleoking/LeoTaskApp/releases/download/v1.0.0/LeoTaskRunEnv.zip">LeoTaskRunEnv</a></p>
+
+<p>Chang the current directory to the "Demo" folder and then execute the following commnad</p>
+
+<pre><code>java -jar leotask.jar -load=rolldice.xml
+</code></pre>
+
+<p>If you are using a MS windows system, you can also execute "rolldice.bat".</p>
+
+<h2>
+<a id="references" class="anchor" href="#references" aria-hidden="true"><span class="octicon octicon-link"></span></a>References:</h2>
+
+<p>[1] Changwang Zhang, Shi Zhou, Benjamin M. Chain (2015). "<a href="http://arxiv.org/abs/1501.01678">LeoTask: a fast, flexible and reliable framework for computational research</a>", arXiv:1501.01678. <a href="http://arxiv-web3.library.cornell.edu/pdf/1501.01678v1">(PDF)</a></p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/mleoking">mleoking</a> can be found on <a href="https://github.com/mleoking/LeoTask">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-70454800-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
