@@ -12,7 +12,7 @@ LeoTask is a parallel task running and results aggregation (MapReduce) framework
 * Reliable & automatic interruption recovery.
 * Ultra lightweight ~ 300KB Jar.
 
-## Utilities
+## Utilities:
 * [All dynamic & cloneable networks structures](leotask/src/app/org/leores/demo/NetDemo.java): a node, a link, a network, a network set (within which networks can overlap with each other), multiplex networks.
 * [Integration with Gnuplot](leotask/src/app/org/leores/demo/JGnuplotDemo.java): hybrid programming with Gnuplot, output statistic results as Gnuplot scripts.
 * [Network generation according to common network models](leotask/src/app/org/leores/demo/ModDemo.java): random networks, scale-free networks, etc.
