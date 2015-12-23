@@ -82,3 +82,7 @@ If you are using a MS windows system, you can also execute "rolldice.bat".
 
 [1] Changwang Zhang, Shi Zhou, Benjamin M. Chain (2015). "[LeoTask: a fast, flexible and reliable framework for computational research](http://arxiv.org/abs/1501.01678)", arXiv:1501.01678. [(PDF)](http://arxiv-web3.library.cornell.edu/pdf/1501.01678v1)
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/mleoking/leotask/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
