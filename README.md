@@ -61,10 +61,9 @@ public class RollDice extends Task {
     </variables>
     <statistics>
         <members>
-            <i><info val="Fig1%pltm+@afterRept@"/><valVar val="sum;#$sum$/$nDice$#"/>
-               <parVars val="nSide;nDice"/></i>
-            <i><info val="Fig2%plt+@afterRept@"/><valVar val="sum"/><parVars val="nSide"/></i>
-            <i><info val="Fig3%plt+@afterRept@"/><valVar val="sum"/><parVars val="nDice"/></i> 
+            <i><info val="afterRept@"/><valVar val="sum;#$sum$/$nDice$#"/><parVars val="nSide;nDice"/></i>
+            <i><info val="afterRept@"/><valVar val="sum"/><parVars val="nSide"/></i>
+            <i><info val="afterRept@"/><valVar val="sum"/><parVars val="nDice"/></i> 
         </members>
     </statistics>
 </Tasks>
