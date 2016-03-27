@@ -278,7 +278,7 @@ public class JGnuplotDemo extends Demo {
 
 			public void initialize() {
 				String sFLoad2 = "jgnuplot2.xml";
-				U.copyFileFromClassPath(this, sFLoad2, sFLoad2, false);//this also works in a jar file
+				//U.copyFileFromClassPath(this, sFLoad2, sFLoad2, false);//this also works in a jar file
 				U.loadFromXML(this, sFLoad2, false);
 			}
 		}
