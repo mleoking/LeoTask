@@ -22,7 +22,7 @@ LeoTask is a parallel task running and results aggregation (MapReduce) framework
 
 ## Example Application:
 
-Please refer to [the introduction](leotask/introduction.pdf?raw=true) for building an example application using the framework.
+Please refer to [the introduction](leotask/doc/introduction.pdf?raw=true) for building an example application using the framework.
 
 ### Code (RollDice.java):
 ```java
