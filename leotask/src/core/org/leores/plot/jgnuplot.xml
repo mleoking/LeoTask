@@ -136,6 +136,7 @@ set cblabel "$zlabel$";
 $header$
 unset key;
 set view map;
+set title "$info(1)$";
 $bp$$bp2$plot '-' using 1:2:3 with image;
 $data(1,3d)$
 </plotImage>

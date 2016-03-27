@@ -92,6 +92,15 @@ public class DataTable implements Cloneable {
 		}
 		return rtn;
 	}
+	
+	public boolean insert(int index, Object... objs) {
+		boolean rtn = false;
+		if (objs != null && objs.length == nColumns) {
+			rtn = true;
+			rows.add(index, objs);
+		}
+		return rtn;
+	}
 
 	public boolean add(Object... objs) {
 		boolean rtn = false;

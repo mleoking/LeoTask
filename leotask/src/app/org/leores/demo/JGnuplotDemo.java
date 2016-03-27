@@ -18,15 +18,131 @@ public class JGnuplotDemo extends Demo {
 		prepPlot();
 	}
 
-	public void simple() {
-		JGnuplot jg = new JGnuplot();
-		Plot plot0 = new Plot("simpleplot");
-		plot0.load("xlabel=x;ylabel=y;");
+	public void plot2d() {
+		JGnuplot jg = new JGnuplot() {
+			{
+				terminal = "pngcairo enhanced dashed";
+				output = "plot2d.png";
+			}
+		};
+		Plot plot = new Plot("") {
+			{
+				xlabel = "x";
+				ylabel = "y";
+			}
+		};
 		double[] x = { 1, 2, 3, 4, 5 }, y1 = { 2, 4, 6, 8, 10 }, y2 = { 3, 6, 9, 12, 15 };
-		DataTableSet dts = plot0.addNewDataTableSet("Simple plot");
-		dts.addNewDataTable("2x", x, y1);
-		dts.addNewDataTable("3x", x, y2);
-		jg.execute(plot0, jg.plot2d);
+		DataTableSet dts = plot.addNewDataTableSet("2D Plot");
+		dts.addNewDataTable("y=2x", x, y1);
+		dts.addNewDataTable("y=3x", x, y2);
+		jg.execute(plot, jg.plot2d);
+	}
+
+	public void plot2dBar() {
+		JGnuplot jg = new JGnuplot() {
+			{
+				terminal = "pngcairo enhanced dashed";
+				output = "plot2dBar.png";
+			}
+		};
+		Plot plot = new Plot("") {
+			{
+				xlabel = "x";
+				ylabel = "y";
+				yrange = "[0:15]";
+				extra2 = "set key top left";
+			}
+		};
+		double[] x = { 1, 2, 3, 4, 5 }, y1 = { 2, 4, 6, 8, 10 }, y2 = { 3, 6, 9, 12, 15 };
+		DataTableSet dts = plot.addNewDataTableSet("2D Bar");
+		DataTable dt = dts.addNewDataTable("", x, y1, y2);
+		dt.insert(0, new String[] { "", "y1=2x", "y2=3x" });
+		jg.execute(plot, jg.plot2dBar);
+	}
+
+	public void plot3d() {
+		JGnuplot jg = new JGnuplot() {
+			{
+				terminal = "pngcairo enhanced dashed";
+				output = "plot3d.png";
+			}
+		};
+		Plot plot = new Plot("") {
+			{
+				xlabel = "x";
+				ylabel = "y";
+				zlabel = "z";
+			}
+		};
+		double[] x = { 1, 2, 3, 4, 5 }, y = { 2, 4, 6, 8, 10 }, z = { 3, 6, 9, 12, 15 }, z2 = { 2, 8, 18, 32, 50 };
+		DataTableSet dts = plot.addNewDataTableSet("3D Plot");
+		dts.addNewDataTable("z=x+y", x, y, z);
+		dts.addNewDataTable("z=x*y", x, y, z2);
+		jg.execute(plot, jg.plot3d);
+	}
+
+	public void plotDensity() {
+		JGnuplot jg = new JGnuplot() {
+			{
+				terminal = "pngcairo enhanced dashed";
+				output = "plotDensity.png";
+			}
+		};
+		Plot plot = new Plot("") {
+			{
+				xlabel = "x";
+				ylabel = "y";
+				zlabel = "z=x^2+y^2";
+			}
+		};
+		DataTableSet dts = plot.addNewDataTableSet("Density Plot");
+		//prepare data
+		List x = new ArrayList(), y = new ArrayList(), z = new ArrayList();
+		for (double i = -2; i <= 2; i += 0.5) {
+			for (double j = -2; j <= 2; j += 0.5) {
+				x.add(i);
+				y.add(j);
+				z.add(i * i + j * j);
+			}
+		}
+		dts.addNewDataTable("z=x^2+y^2", x, y, z);
+		jg.execute(plot, jg.plotDensity);
+	}
+
+	public void plotImage() {
+		JGnuplot jg = new JGnuplot() {
+			{
+				terminal = "pngcairo enhanced dashed";
+				output = "plotImage.png";
+			}
+		};
+		Plot plot = new Plot("") {
+			{
+				xlabel = "x";
+				ylabel = "y";
+				zlabel = "z=x^2+y^2";
+			}
+		};
+		DataTableSet dts = plot.addNewDataTableSet("Image Plot");
+		//prepare data
+		List x = new ArrayList(), y = new ArrayList(), z = new ArrayList();
+		for (double i = -2; i <= 2; i += 0.5) {
+			for (double j = -2; j <= 2; j += 0.5) {
+				x.add(i);
+				y.add(j);
+				z.add(i * i + j * j);
+			}
+		}
+		dts.addNewDataTable("z=x^2+y^2", x, y, z);
+		jg.execute(plot, jg.plotImage);
+	}
+
+	public void simple() {
+		plot2d();
+		plot2dBar();
+		plot3d();
+		plotDensity();
+		plotImage();
 	}
 
 	public void prepPlot() {
@@ -83,6 +199,9 @@ public class JGnuplotDemo extends Demo {
 		plot2.add(dts2);
 	}
 
+	/**
+	 * Output the generated gnuplot script file without executing it.
+	 */
 	public void compile() {
 		JGnuplot jg = new JGnuplot();
 		jg.compile(plot1, jg.plot2d);//if file name is omitted it will use plot.info+".plt" as the file name.
@@ -91,13 +210,18 @@ public class JGnuplotDemo extends Demo {
 		jg.compile(plot1, jg.multiplot, "jgnuplot3.plt");
 	}
 
+	/**
+	 * Shows how to use both synchronized and asynchronized running of Gnuplot.
+	 * (Synchronized: your java program will wait until you close the popped
+	 * Gnuplot window; Asynchronized: you java program will not wait.)
+	 */
 	public void execute() {
 		JGnuplot jg = new JGnuplot();
 		jg.terminal = "wxt enhanced";
 		jg.execute(plot1, jg.plot2d, jg.JG_InNewThread | jg.JG_Pause);
 		jg.execute(plot2, jg.plot3d);
 		jg.beforeStyleVar = "ls1=10;ls10=1;ls2=9;ls9=2;";
-		jg.executeA(plot1, jg.plot2d);//asynchronous plot in a new thread
+		jg.executeA(plot1, jg.plot2d);//Asynchronous plot in a new thread
 		jg.beforeStyleVar = null;
 		jg.extra = "set label \"Dynamically add extra code using the extra field.\" at graph 0.5,0.5 center";
 		//jg.extra = "set style line 1 lc rgbcolor 'greenyellow' lt 1 lw 2 pt 1";
@@ -107,13 +231,18 @@ public class JGnuplotDemo extends Demo {
 		jg.execute(plot1, jg.multiplot);//show gnuplot warning in the java console. warning can be easily solved by extending the canvas size		
 	}
 
+	/**
+	 * Show different available terminals to plot. Please refer to the Gnuplot
+	 * website for the complete list of terminals.
+	 */
 	public void terminals() {
 		JGnuplot jg = new JGnuplot();
+		jg.execute(plot1, jg.plot2d);//Using the default terminal
 		//windows terminal is only available to windows. You might get error output from gnuplot if you are not using windows.		
 		jg.terminal = "windows enhanced dashed title 'id=100 hello there' size 600,600";
 		jg.beforeStyle = "linewidth=4";
 		jg.execute(plot1, jg.plot2d, ~jg.JG_DeleteTempFile);
-		jg.terminal = null;
+		jg.terminal = null;//Set the terminal to the default terminal
 		jg.execute(plot1, jg.plot2d);//wxt terminal default size 640,384
 		jg.terminal = "dumb";//ascii art terminal for anything that prints text
 		jg.execute(plot1, jg.plot2d);
@@ -161,10 +290,10 @@ public class JGnuplotDemo extends Demo {
 	public static void demo() {
 		JGnuplotDemo jgd = new JGnuplotDemo();
 		jgd.simple();
-		jgd.compile();
-		jgd.execute();
-		jgd.terminals();		
-		jgd.plotx();
+		//jgd.compile();
+		//jgd.execute();
+		//jgd.terminals();
+		//jgd.plotx();
 	}
 
 }

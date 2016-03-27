@@ -453,7 +453,6 @@ public class JGnuplot extends Logger {
 					}
 					String line = U.wrap(sRow, "", "", " ");
 					fw.append(line + "\n");
-
 				}
 				fw.append("e\n");
 				fw.flush();

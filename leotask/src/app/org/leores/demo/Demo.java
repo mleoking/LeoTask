@@ -20,10 +20,10 @@ public class Demo extends LogUtil {
 		U.tLog("------------------");
 		//AnaDemo.demo();
 		//DataDemo.demo();
-		DelimitedReaderDemo.demo();
+		//DelimitedReaderDemo.demo();
 		//EpidemicDemo.demo();
 		//FileUtilDemo.demo();
-		//JGnuplotDemo.demo();
+		JGnuplotDemo.demo();
 		//MathDemo.demo();
 		//ModDemo.demo();
 		//NetDemo.demo();
