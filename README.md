@@ -83,5 +83,3 @@ If you are using a MS windows system, you can also execute "rolldice.bat".
 
 
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/mleoking/leotask/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
